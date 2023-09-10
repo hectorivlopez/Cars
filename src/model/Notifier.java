@@ -23,7 +23,7 @@ public class Notifier extends Thread {
                             this.app.getMutexRigth().notify();
                         }
                     }
-                    else if(this.app.getRightWay().size() < 4 && this.app.getRightWay().getLast().x <= this.screen.getWidth() - 110) {
+                    else if(this.app.getRightWay().size() < 4 && this.app.getRightWay().getLast().x <= this.screen.getWidth() - 160) {
                         synchronized (this.app.getMutexRigth()) {
                             this.app.getMutexRigth().notify();
                         }
@@ -76,7 +76,7 @@ public class Notifier extends Thread {
                     }
                 }
                 else {
-                    if(!this.app.getCarsRight().isEmpty() && this.app.getWay().getLast().x <= this.screen.getWidth() - 110) {
+                    if(!this.app.getCarsRight().isEmpty() && this.app.getWay().getLast().x <= this.screen.getWidth() - 160) {
                         synchronized (app.getMutexRigth()) {
                             this.app.getMutexRigth().notify();
                         }

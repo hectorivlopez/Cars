@@ -29,7 +29,7 @@ public class AnimatedScreen extends JPanel {
             synchronized (this.app.getMutexLeft()) {
                 if(!this.app.getWay().isEmpty()) {
                     for(Car car : this.app.getWay()) {
-                        g.setColor(Color.RED);
+                        /*g.setColor(Color.RED);
                         g.fillRect(car.x + 20, car.y + 30, 60, 20);
                         g.fillRect(car.x, car.y + 50, 100, 30);
                         g.setColor(Color.BLACK);
@@ -38,13 +38,14 @@ public class AnimatedScreen extends JPanel {
                         g.setColor(Color.GRAY);
                         g.fillOval(car.x + 15, car.y + 73, 15, 15);
                         g.fillOval(car.x + 70, car.y + 73, 15, 15);
-                        g.drawString(String.valueOf(car.name), car.x + 45, car.y + 60);
-
+                        g.drawString(String.valueOf(car.name), car.x + 45, car.y + 60);*/
+                        g.drawImage(car.image,car.x, 65, 150,150, null);
                     }
+
                 }
                 if(!this.app.getRightWay().isEmpty()) {
                     for(Car car : this.app.getRightWay()) {
-                        g.setColor(Color.RED);
+                        /*g.setColor(Color.RED);
                         g.fillRect(car.x + 20, car.y + 30, 60, 20);
                         g.fillRect(car.x, car.y + 50, 100, 30);
                         g.setColor(Color.BLACK);
@@ -53,9 +54,10 @@ public class AnimatedScreen extends JPanel {
                         g.setColor(Color.GRAY);
                         g.fillOval(car.x + 15, car.y + 73, 15, 15);
                         g.fillOval(car.x + 70, car.y + 73, 15, 15);
-                        g.drawString(String.valueOf(car.name), car.x + 45, car.y + 60);
-
+                        g.drawString(String.valueOf(car.name), car.x + 45, car.y + 60);*/
+                        g.drawImage(car.image,car.x, -35, 150,150, null);
                     }
+
                 }
             }
 
@@ -64,7 +66,7 @@ public class AnimatedScreen extends JPanel {
             synchronized (this.app.getMutexRigth()) {
                 if(!this.app.getWay().isEmpty()) {
                     for(Car car : this.app.getWay()) {
-                        g.setColor(Color.RED);
+                        /*g.setColor(Color.RED);
                         g.fillRect(car.x + 20, car.y + 30, 60, 20);
                         g.fillRect(car.x, car.y + 50, 100, 30);
                         g.setColor(Color.BLACK);
@@ -73,13 +75,13 @@ public class AnimatedScreen extends JPanel {
                         g.setColor(Color.GRAY);
                         g.fillOval(car.x + 15, car.y + 73, 15, 15);
                         g.fillOval(car.x + 70, car.y + 73, 15, 15);
-                        g.drawString(String.valueOf(car.name), car.x + 45, car.y + 60);
-
+                        g.drawString(String.valueOf(car.name), car.x + 45, car.y + 60);*/
+                        g.drawImage(car.image,car.x, -35, 150,150, null);
                     }
                 }
                 if(!this.app.getLeftWay().isEmpty()) {
                     for(Car car : this.app.getLeftWay()) {
-                        g.setColor(Color.RED);
+                        /*g.setColor(Color.RED);
                         g.fillRect(car.x + 20, car.y + 30, 60, 20);
                         g.fillRect(car.x, car.y + 50, 100, 30);
                         g.setColor(Color.BLACK);
@@ -88,8 +90,8 @@ public class AnimatedScreen extends JPanel {
                         g.setColor(Color.GRAY);
                         g.fillOval(car.x + 15, car.y + 73, 15, 15);
                         g.fillOval(car.x + 70, car.y + 73, 15, 15);
-                        g.drawString(String.valueOf(car.name), car.x + 45, car.y + 60);
-
+                        g.drawString(String.valueOf(car.name), car.x + 45, car.y + 60);*/
+                        g.drawImage(car.image,car.x, 65, 150,150, null);
                     }
                 }
             }

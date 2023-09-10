@@ -5,6 +5,7 @@ import controller.WindowController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class Window extends JFrame {
     public JButton addCarLeftBtn;
@@ -48,13 +49,25 @@ public class Window extends JFrame {
 
         addCarLeftBtn = new JButton();
         addCarLeftBtn.setText("Agregar carro");
-        addCarLeftBtn.addActionListener(e -> addCarLeft(e));
+        addCarLeftBtn.addActionListener(e -> {
+            try {
+                addCarLeft(e);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         addCarLeftBtn.setBounds(25, 350,200,30);
         this.add(addCarLeftBtn);
 
         addCarRightBtn = new JButton();
         addCarRightBtn.setText("Agregar carro");
-        addCarRightBtn.addActionListener(e -> addCarRight(e));
+        addCarRightBtn.addActionListener(e -> {
+            try {
+                addCarRight(e);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         addCarRightBtn.setBounds(275, 350,200,30);
         this.add(addCarRightBtn);
 
@@ -73,11 +86,11 @@ public class Window extends JFrame {
         WindowController.startAnimation();
     }
 
-    public void addCarLeft(ActionEvent e) {
+    public void addCarLeft(ActionEvent e) throws IOException {
         WindowController.addCarLeft();
     }
 
-    public void addCarRight(ActionEvent e) {
+    public void addCarRight(ActionEvent e) throws IOException {
         WindowController.addCarRight();
     }
 }

@@ -1,8 +1,10 @@
 package model;
 
 import controller.WindowController;
-import view.Window;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.LinkedList;
 
 
@@ -19,8 +21,10 @@ public class App {
     private LinkedList<Car> waitList;
     public Car lastCar;
     private Notifier notifier;
+    private int carsLeftAmount;
+    private int carsRightAmount;
 
-    public App() {
+    public App() throws IOException {
         this.way = new LinkedList<Car>();
         this.carsLeft = new LinkedList<Car>();
         this.carsRight = new LinkedList<Car>();
@@ -30,6 +34,8 @@ public class App {
         this.mutexWait = new Object();
         this.rightWay = new LinkedList<Car>();
         this.leftWay = new LinkedList<Car>();
+        this.carsLeftAmount = 0;
+        this.carsRightAmount = 0;
     }
 
     public void start() {
@@ -40,7 +46,7 @@ public class App {
         notifier.start();
     }
 
-    public void addCar(String side) {
+    public void addCar(String side) throws IOException {
         if(this.way.isEmpty()) {
             this.carsPassing = side;
             if(side.equals("left")) {
@@ -52,7 +58,8 @@ public class App {
         }
         Car newCar;
         if(side.equals("left")) {
-            newCar = new Car(this.carsLeft.size() + 1, side, -100, 100);
+            this.carsLeftAmount++;
+            newCar = new Car(this.carsLeftAmount, side, -150, 100);
             this.carsLeft.add(newCar);
             /*if(this.carsPassing.equals("left")) {
                 this.way = this.carsLeft;
@@ -61,7 +68,8 @@ public class App {
             newCarThread.start();
         }
         else  {
-            newCar = new Car(this.carsRight.size() + 1, side, WindowController.window.screen.getWidth(), -28);
+            this.carsRightAmount++;
+            newCar = new Car(this.carsRightAmount, side, WindowController.window.screen.getWidth(), -28);
             this.carsRight.add(newCar);
             /*if(this.carsPassing.equals("right")) {
                 this.way = this.carsRight;
@@ -78,6 +86,7 @@ public class App {
         if(this.way.isEmpty()) {
             System.out.println("Change way");
             if(this.carsPassing.equals("left")) {
+                this.carsLeftAmount = 0;
                 this.carsPassing = "right";
                 /* synchronized (this.mutexRigth) {
                     this.mutexRigth.notify();;
@@ -89,6 +98,7 @@ public class App {
                 }
             }
             else {
+                this.carsRightAmount = 0;
                 this.carsPassing = "left";
                 /* synchronized (this.mutexLeft) {
                     this.mutexLeft.notify();;

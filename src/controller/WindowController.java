@@ -3,6 +3,8 @@ package controller;
 import model.*;
 import view.Window;
 
+import java.io.IOException;
+
 public class WindowController {
     public static Window window;
     //public static AnimateCar animation;
@@ -33,13 +35,13 @@ public class WindowController {
         app.start();
     }
 
-    public static void addCarLeft() {
+    public static void addCarLeft() throws IOException {
         app.addCar("left");
         updateLabels();
 
     }
 
-    public static void addCarRight() {
+    public static void addCarRight() throws IOException {
         app.addCar("right");
         updateLabels();
 

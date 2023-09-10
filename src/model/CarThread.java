@@ -44,7 +44,7 @@ public class CarThread extends Thread {
             this.app.getCarsLeft().remove(this.car);
             this.mutex = this.app.getMutexWait();
 
-            while (this.car.x < 385 - 110 - (110 * wayPos)) {
+            while (this.car.x < 385 - 160 - (160 * wayPos)) {
                 this.car.x++;
 
                 try {
@@ -66,7 +66,7 @@ public class CarThread extends Thread {
             this.app.getCarsRight().remove(this.car);
             this.mutex = this.app.getMutexWait();
 
-            while (this.car.x > 615 + (110 * wayPos)) {
+            while (this.car.x > 615 + (160 * wayPos)) {
                 this.car.x--;
 
                 try {
@@ -125,7 +125,7 @@ public class CarThread extends Thread {
         }
         else {
             this.app.getCarsRight().remove(this.car);
-            while (this.car.x > -100) {
+            while (this.car.x > -150) {
                 this.car.x--;
 
                 try {
