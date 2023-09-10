@@ -8,11 +8,14 @@ import java.util.LinkedList;
 
 public class App {
     private LinkedList<Car> way;
+    private LinkedList<Car> rightWay;
+    private LinkedList<Car> leftWay;
     private LinkedList<Car> carsLeft;
     private LinkedList<Car> carsRight;
     private String carsPassing;
     private Object mutexLeft;
     private Object mutexRigth;
+    private Object mutexWait;
     private LinkedList<Car> waitList;
     public Car lastCar;
     private Notifier notifier;
@@ -24,7 +27,9 @@ public class App {
         this.carsPassing = "left";
         this.mutexLeft = new Object();
         this.mutexRigth = new Object();
-
+        this.mutexWait = new Object();
+        this.rightWay = new LinkedList<Car>();
+        this.leftWay = new LinkedList<Car>();
     }
 
     public void start() {
@@ -38,6 +43,12 @@ public class App {
     public void addCar(String side) {
         if(this.way.isEmpty()) {
             this.carsPassing = side;
+            if(side.equals("left")) {
+                this.way = this.leftWay;
+            }
+            else {
+                this.way = this.rightWay;
+            }
         }
         Car newCar;
         if(side.equals("left")) {
@@ -63,18 +74,29 @@ public class App {
     public void removeCar(Car car) {
         this.way.remove(car);
         WindowController.updateLabels();
-
+        System.out.println(this.way.size());
         if(this.way.isEmpty()) {
+            System.out.println("Change way");
             if(this.carsPassing.equals("left")) {
                 this.carsPassing = "right";
-                synchronized (this.mutexRigth) {
+                /* synchronized (this.mutexRigth) {
                     this.mutexRigth.notify();;
+                } */
+                this.way = this.rightWay;
+                System.out.println("Active way: right");
+                synchronized (this.mutexWait) {
+                    this.mutexWait.notifyAll();
                 }
             }
             else {
                 this.carsPassing = "left";
-                synchronized (this.mutexLeft) {
+                /* synchronized (this.mutexLeft) {
                     this.mutexLeft.notify();;
+                } */
+                this.way = this.leftWay;
+                System.out.println("Active way: left");
+                synchronized (this.mutexWait) {
+                    this.mutexWait.notifyAll();
                 }
             }
         }
@@ -153,5 +175,29 @@ public class App {
 
     public void setNotifier(Notifier notifier) {
         this.notifier = notifier;
+    }
+
+    public LinkedList<Car> getRightWay() {
+        return rightWay;
+    }
+
+    public void setRightWay(LinkedList<Car> rightWay) {
+        this.rightWay = rightWay;
+    }
+
+    public LinkedList<Car> getLeftWay() {
+        return leftWay;
+    }
+
+    public void setLeftWay(LinkedList<Car> leftWay) {
+        this.leftWay = leftWay;
+    }
+
+    public Object getMutexWait() {
+        return mutexWait;
+    }
+
+    public void setMutexWait(Object mutexWait) {
+        this.mutexWait = mutexWait;
     }
 }

@@ -42,7 +42,7 @@ public class WindowController {
     public static void addCarRight() {
         app.addCar("right");
         updateLabels();
-        System.out.println("Right: " + app.getCarsRight().size());
+
     }
 
     public static void updateLabels() {

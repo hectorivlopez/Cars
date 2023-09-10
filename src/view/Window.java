@@ -17,7 +17,7 @@ public class Window extends JFrame {
 
     public Window() {
 
-        setSize(500,500);
+        setSize(1000,500);
         setLocationRelativeTo(null);
         setLayout(null);
 
@@ -42,7 +42,7 @@ public class Window extends JFrame {
 
         screen = new AnimatedScreen(WindowController.app);
         screen.setBackground(Color.DARK_GRAY);
-        screen.setBounds(0,100,this.getWidth(),220);
+        screen.setBounds(0,100,this.getWidth(),200);
         this.add(screen);
 
 
