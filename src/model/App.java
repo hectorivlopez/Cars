@@ -24,8 +24,9 @@ public class App {
     private int carsLeftAmount;
     private int carsRightAmount;
 
+
     public App() throws IOException {
-        this.way = new LinkedList<Car>();
+
         this.carsLeft = new LinkedList<Car>();
         this.carsRight = new LinkedList<Car>();
         this.carsPassing = "left";
@@ -34,20 +35,19 @@ public class App {
         this.mutexWait = new Object();
         this.rightWay = new LinkedList<Car>();
         this.leftWay = new LinkedList<Car>();
+        this.way = leftWay;
         this.carsLeftAmount = 0;
         this.carsRightAmount = 0;
     }
 
     public void start() {
-        if(this.carsLeft.isEmpty() && !this.carsRight.isEmpty()) {
-            this.carsPassing = "right";
-        }
         this.notifier = new Notifier(this, WindowController.window.screen);
         notifier.start();
     }
 
+
     public void addCar(String side) throws IOException {
-        if(this.way.isEmpty()) {
+        if(this.way.isEmpty() && this.carsLeft.isEmpty() && this.carsRight.isEmpty()) {
             this.carsPassing = side;
             if(side.equals("left")) {
                 this.way = this.leftWay;
@@ -210,4 +210,22 @@ public class App {
     public void setMutexWait(Object mutexWait) {
         this.mutexWait = mutexWait;
     }
+
+    public int getCarsLeftAmount() {
+        return carsLeftAmount;
+    }
+
+    public void setCarsLeftAmount(int carsLeftAmount) {
+        this.carsLeftAmount = carsLeftAmount;
+    }
+
+    public int getCarsRightAmount() {
+        return carsRightAmount;
+    }
+
+    public void setCarsRightAmount(int carsRightAmount) {
+        this.carsRightAmount = carsRightAmount;
+    }
+
+
 }

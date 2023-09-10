@@ -3,6 +3,7 @@ package controller;
 import model.*;
 import view.Window;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class WindowController {
@@ -11,28 +12,16 @@ public class WindowController {
     public static App app;
     public static Object mutex = new Object();
 
-    public static void start() {
+    public static void start() throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         window = new Window();
-        //animation = new AnimateCar(window.screen);
-       // animation.start();
-        /*Car[] cars = new Car[10];
-        CarThread[] carsT = new CarThread[10];
-        for(int i = 0; i < 10; i++) {
-            Car newCar = new Car(i);
-            cars[i] = newCar;
-            CarThread newCarThread = new CarThread(newCar, mutex, window.screen);
-            carsT[i] = newCarThread;
-            newCarThread.start();
-        }
 
-
-         */
         Repaint cosa = new Repaint(window.screen);
         cosa.start();
     }
 
     public static void startAnimation() {
         app.start();
+        window.startBtn.setEnabled(false);
     }
 
     public static void addCarLeft() throws IOException {
